@@ -1,0 +1,33 @@
+<h3>Listado de Facturas</h3>
+<a class="btn btn-primary btn-sm float-md-left" routerLink="/addfact">Nueva Factura</a>
+<div class="text-center" *ngIf="cargando">
+  <img src="../../../assets/spinner.gif">
+</div>
+<div *ngIf="!cargando">
+  <table class="table table-striped table-hover table-bordered tabla" style="margin-top: 40px;">
+    <thead class="thead-light">
+        <tr class="filters">
+          <th>Nro factura</th>
+          <th>Nombre o Razón eocial</th>
+          <th>Fecha expedición</th>
+          <th>Descripción</th>
+          <th>Importe Total</th>
+          <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let factura of facturas">
+        <td>{{factura.nrofactura}}</td>
+        <td>{{factura.nombre}}</td>
+        <td>{{factura.fechaexpedicion}}</td>
+        <td>{{factura.descripcion}}</td>
+        <td>{{factura.total}}</td>
+        <td>
+          <button class="btn btn-default btn-sm" routerLink="/viewfact/{{factura.id$}}">Ver</button>
+          <button class="btn btn-success btn-sm" routerLink="/editfact/{{factura.id$}}">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarFactura(factura.id$)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

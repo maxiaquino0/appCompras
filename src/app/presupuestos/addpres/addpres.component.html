@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+    <h3>Añadir nuevo presupuesto</h3>
+    <a class="btn btn-primary btn-sm" routerLink="/listpres">Volver a listado</a>
+    <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.proveedor.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.proveedor.invalid && presupuestoForm.controls.proveedor.touched"></i>
+        <select class="form-control" id="proveedor" formControlName="proveedor">
+          <option value="">Sin Selección</option>
+          <option *ngFor="let proveedor of proveedores" value="{{proveedor.nombre}}">{{proveedor.nombre}}</option>
+        </select>
+        <p class="alert alert-danger" *ngIf="presupuestoForm.controls.proveedor.invalid && presupuestoForm.controls.proveedor.touched">
+          Por favor seleccione un proveedor.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha Presupuesto</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.fecha.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.fecha.invalid && presupuestoForm.controls.fecha.touched"></i>
+        <input type="date" class="form-control" id="fecha" formControlName="fecha">
+        <p class="alert alert-danger" *ngIf="presupuestoForm.controls.fecha.invalid && presupuestoForm.controls.fecha.touched">
+          Por favor ingrese una fecha.
+        </p>
+      </div>
+       <div class="form-group">
+        <label for="concepto">Concepto</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.concepto.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.concepto.invalid && presupuestoForm.controls.concepto.touched"></i>
+        <input type="text" class="form-control" id="concepto" formControlName="concepto">
+        <p class="alert alert-danger" *ngIf="presupuestoForm.controls.concepto.invalid && presupuestoForm.controls.concepto.touched">
+          Por favor ingrese concepto.
+        </p>
+       </div>
+       <div class="form-group">
+        <label for="base">Base Imponible</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.base.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.base.invalid && presupuestoForm.controls.base.touched"></i>
+        <input type="number" class="form-control" id="base" formControlName="base">
+        <p class="alert alert-danger" *ngIf="presupuestoForm.controls.base.invalid && presupuestoForm.controls.base.touched">
+          Por favor ingrese base.
+        </p>
+       </div>
+       <div class="form-group">
+        <label for="tipo">Tipo de IVA</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.tipo.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.tipo.invalid && presupuestoForm.controls.tipo.touched"></i>
+        <select class="form-control" id="tipo" formControlName="tipo">
+          <option value="">Seleccione...</option>
+          <option value=0> 0 %</option>
+          <option value=0.04> 4 %</option>
+          <option value=0.10>10 %</option>
+          <option value=0.21>21 %</option>
+        </select>
+        <p class="alert alert-danger" *ngIf="presupuestoForm.controls.tipo.invalid && presupuestoForm.controls.tipo.touched">
+          Seleccione tipo de iva.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="iva">Importe IVA</label>
+        <input type="number" class="form-control" id="iva" formControlName="iva" [(ngModel)]="presupuestoForm.value.iva" disabled>
+      </div>
+      <div class="form-group">
+        <label for="total">Total Factura IVA Incluido</label>
+        <input type="number" class="form-control" id="total" formControlName="total" [(ngModel)]="presupuestoForm.value.total" disabled>
+      </div>
+      <button class="btn btn-primary btn-sm" type="submit" [disabled]="!presupuestoForm.valid">Añadir Presupuesto</button>
+      <a class="btn btn-danger btn-sm" routerLink="/listpres">Cancelar</a>
+      <p class="alert alert-danger" *ngIf="!presupuestoForm.valid">
+        Por favor complete todos los campos
+      </p>
+    </form>
+    <hr>
+    <pre>Valor del formulario: {{ presupuestoForm.value | json }}</pre>
+    <pre>Status del formulario: {{ presupuestoForm.status | json }}</pre>
+    <hr>
+    <pre>{{presupuesto | json}}</pre>
+  </div>
+</div>

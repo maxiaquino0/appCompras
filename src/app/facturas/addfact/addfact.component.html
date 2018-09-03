@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+    <h3>Añadir nueva factura</h3>
+    <a class="btn btn-primary btn-sm" routerLink="/facturas">Volver a listado</a>
+    <form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nrofactura">Nro. Factura: {{nrofactura}}</label>
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre o Razón eocial</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.nombre.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.nombre.invalid && facturaForm.controls.nombre.touched"></i>
+        <select class="form-control" id="nombre" formControlName="nombre">
+          <option value="">Sin Selección</option>
+          <option *ngFor="let proveedor of proveedores" value="{{proveedor.nombre}}">{{proveedor.nombre}}</option>
+        </select>
+
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.nombre.invalid && facturaForm.controls.nombre.touched">
+          Por favor ingrese un nombre o razón social.
+        </p>
+      </div>
+       <div class="form-group">
+        <label for="nif">NIF</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.nif.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.nif.invalid && facturaForm.controls.nif.touched"></i>
+        <input type="number" class="form-control" id="nif" formControlName="nif">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.nif.invalid && facturaForm.controls.nif.touched">
+          Por favor ingrese NIF.
+        </p>
+       </div>
+       <div class="form-group">
+        <label for="fechaexpedicion">Fecha expedición</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.fechaexpedicion.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.fechaexpedicion.invalid && facturaForm.controls.fechaexpedicion.touched"></i>
+        <input type="date" class="form-control" id="fechaexpedicion" formControlName="fechaexpedicion">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.fechaexpedicion.invalid && facturaForm.controls.fechaexpedicion.touched">
+          Por favor ingrese fecha expedición.
+        </p>
+       </div>
+       <div class="form-group">
+        <label for="fechaoperacion">Fecha operación</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.fechaoperacion.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.fechaoperacion.invalid && facturaForm.controls.fechaoperacion.touched"></i>
+        <input type="date" class="form-control" id="fechaoperacion" formControlName="fechaoperacion" [(ngModel)]="facturaForm.value.fechaoperacion">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.fechaoperacion.invalid && facturaForm.controls.fechaoperacion.touched">
+          Por favor ingrese fecha operación.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.descripcion.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.descripcion.invalid && facturaForm.controls.descripcion.touched"></i>
+        <input type="text" class="form-control" id="descripcion" formControlName="descripcion">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.descripcion.invalid && facturaForm.controls.descripcion.touched">
+          Por favor ingrese descripción.
+        </p>
+      </div>
+      <div class="form-group">
+          <label for="cantidad">Cantidad</label>
+          <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.cantidad.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.cantidad.invalid && facturaForm.controls.cantidad.touched"></i>
+          <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+          <p class="alert alert-danger" *ngIf="facturaForm.controls.cantidad.invalid && facturaForm.controls.cantidad.touched">
+            Por favor ingrese cantidad.
+          </p>
+        </div>
+      <div class="form-group">
+        <label for="precioporunidad">Precio por unidad</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.precioporunidad.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.precioporunidad.invalid && facturaForm.controls.precioporunidad.touched"></i>
+        <input type="number" class="form-control" id="precioporunidad" formControlName="precioporunidad">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.precioporunidad.invalid && facturaForm.controls.precioporunidad.touched">
+          Por favor ingrese precio por unidad.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="descuento">Descuento</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.descuento.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.descuento.invalid && facturaForm.controls.descuento.touched"></i>
+        <input type="number" class="form-control" id="descuento" formControlName="descuento">
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.descuento.invalid && facturaForm.controls.descuento.touched">
+          Por favor ingrese descuento.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="iva">IVA</label>
+        <i class="fa fa-check-circle check" *ngIf="facturaForm.controls.iva.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck" *ngIf="facturaForm.controls.iva.invalid && facturaForm.controls.iva.touched"></i>
+        <select class="form-control" id="iva" formControlName="iva">
+          <option value="">Seleccione...</option>
+          <option value=0> 0 %</option>
+          <option value=0.04> 4 %</option>
+          <option value=0.10>10 %</option>
+          <option value=0.21>21 %</option>
+        </select>
+        <p class="alert alert-danger" *ngIf="facturaForm.controls.iva.invalid && facturaForm.controls.iva.touched">
+          Seleccione iva.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="total">Importe Total</label>
+        <input type="number" class="form-control" id="total" formControlName="total" [(ngModel)]="facturaForm.value.total" disabled>
+      </div>
+      
+      <button class="btn btn-primary btn-sm" type="submit" [disabled]="!facturaForm.valid">Añadir Factura</button>
+      <a class="btn btn-danger btn-sm" routerLink="/facturas">Cancelar</a>
+      <p class="alert alert-danger" *ngIf="!facturaForm.valid">
+        Por favor complete todos los campos
+      </p>
+    </form>
+    <hr>
+    <pre>Valor del formulario: {{ facturaForm.value | json }}</pre>
+    <pre>Status del formulario: {{ facturaForm.status | json }}</pre>
+    <hr>
+    <pre>{{factura | json}}</pre>
+  </div>
+</div>

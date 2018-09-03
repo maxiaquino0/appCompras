@@ -1,0 +1,6 @@
+<h3>Lista de contratos</h3>
+<a class="btn btn-primary btn-sm float-md-left" routerLink="/uploads">Nuevo contrato</a>
+<br>
+<div *ngFor="let file of uploads">
+	<app-detalles [upload]="file"></app-detalles>
+</div>

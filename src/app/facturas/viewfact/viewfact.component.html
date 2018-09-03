@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+    <h3>Vista detallada de factura</h3>
+    <a class="btn btn-primary btn-sm" routerLink="/facturas">Volver a listado</a>
+      <div class="form-group">
+        <label for="nrofactura">Nro. Factura: </label>{{factura.nrofactura}}
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre o Razón Social: </label>{{factura.nombre}}
+      </div>
+       <div class="form-group">
+        <label for="nif">N.I.F.: </label>{{factura.nif}}
+       </div>
+       <div class="form-group">
+        <label for="fechaexpedicion">Fecha expedición: </label>{{factura.fechaexpedicion}}
+       </div>
+       <div class="form-group">
+        <label for="fechaoperacion">Fecha operación: </label>{{factura.fechaoperacion}}
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción: </label>{{factura.descripcion}}
+      </div>
+      <div class="form-group">
+          <label for="cantidad">Cantidad: </label>{{factura.cantidad}}
+      </div>
+      <div class="form-group">
+        <label for="precioporunidad">Precio por unidad: </label>{{factura.precioporunidad}}
+      </div>
+      <div class="form-group">
+        <label for="descuento">Descuento: </label>{{factura.descuento}}
+      </div>
+      <div class="form-group">
+        <label for="iva">IVA: </label>{{factura.iva}}
+      </div>
+      <div class="form-group">
+        <label for="total">Importe Total: </label>{{factura.total}}
+      </div>
+      <button class="btn btn-success btn-sm" routerLink="/editfact/{{id}}">Editar</button>
+  </div>
+</div>
